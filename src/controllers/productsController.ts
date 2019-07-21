@@ -6,37 +6,31 @@ import {
   updateProduct,
   removeProduct
 } from "../models/productModel";
-import {
-  OK,
-  CREATED,
-  NOT_FOUND,
-  NO_CONTENT,
-  INTERNAL_SERVER_ERROR
-} from "http-status-codes";
-import { Request, Response } from "express";
+import { OK, CREATED, NOT_FOUND, NO_CONTENT } from "http-status-codes";
+import { Request, Response, NextFunction } from "express";
 import uuidv1 from "uuid/v1";
 
-async function findAll(req: Request, res: Response) {
+async function findAll(req: Request, res: Response, next: NextFunction) {
   try {
     const products = await getProducts();
     res.status(OK).send(products);
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).send(error);
+    next(error);
   }
 }
 
-async function create(req: Request, res: Response) {
+async function create(req: Request, res: Response, next: NextFunction) {
   try {
     const newProduct: Product = res.locals.newProduct;
     newProduct.id = uuidv1();
     const addedProduct = await addProducts(newProduct);
     res.status(CREATED).send(addedProduct);
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).send(error);
+    next(error);
   }
 }
 
-async function findById(req: Request, res: Response) {
+async function findById(req: Request, res: Response, next: NextFunction) {
   try {
     const product = await findProductById(req.params.id);
     if (product !== undefined) {
@@ -45,11 +39,11 @@ async function findById(req: Request, res: Response) {
       res.status(NOT_FOUND).send("no such item");
     }
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).send(error);
+    next(error);
   }
 }
 
-async function update(req: Request, res: Response) {
+async function update(req: Request, res: Response, next: NextFunction) {
   try {
     const id = req.params.id;
     const product = await updateProduct(id, req.body);
@@ -59,10 +53,10 @@ async function update(req: Request, res: Response) {
       res.status(OK).send(product);
     }
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).send(error);
+    next(error);
   }
 }
-async function remove(req: Request, res: Response) {
+async function remove(req: Request, res: Response, next: NextFunction) {
   try {
     const removed = await removeProduct(req.params.id);
     if (removed == true) {
@@ -71,7 +65,7 @@ async function remove(req: Request, res: Response) {
       res.status(NOT_FOUND).send("product not found");
     }
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).send(error);
+    next(error);
   }
 }
 const productController = {

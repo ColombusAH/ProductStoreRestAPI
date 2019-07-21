@@ -1,39 +1,11 @@
 //*********/ Builded only for simulate work with DB //*********/
-
+import products from "../data/products.json";
 export interface Product {
   id: string;
   categoryId: string;
   name: string;
   itemInStock: number;
 }
-
-const products = [
-  {
-    name: "Pork - Kidney",
-    id: "15a4d130-aae0-11e9-bccc-474d277300b2",
-    categoryId: "15a4f840-aae0-11e9-bccc-474d277300b2",
-    itemInStock: 4
-  },
-  {
-    name: "Sobe - Green Tea",
-    id: "15a4f841-aae0-11e9-bccc-474d277300b2",
-    categoryId: "15a4f842-aae0-11e9-bccc-474d277300b2",
-    itemInStock: 3
-  },
-  {
-    name: "Ham - Cooked",
-    id: "15a4f843-aae0-11e9-bccc-474d277300b2",
-    categoryId: "15a4f844-aae0-11e9-bccc-474d277300b2",
-    itemInStock: 1
-  },
-  {
-    name: "Cornflakes",
-    id: "15a4f845-aae0-11e9-bccc-474d277300b2",
-    categoryId: "15a4f846-aae0-11e9-bccc-474d277300b2",
-    itemInStock: 20
-  }
-] as Product[];
-
 export async function getProducts(): Promise<Product[]> {
   return Promise.resolve(products);
 }

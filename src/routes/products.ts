@@ -17,4 +17,4 @@ router
   .get(validateIdLength, productController.findById)
   .put(validateIdLength, validateNameLength, productController.update)
   .delete(validateIdLength, productController.remove);
-module.exports = router;
+export default router;

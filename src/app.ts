@@ -2,7 +2,8 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import morgan from "morgan";
-const routes = require("./routes");
+import routes from "./routes";
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

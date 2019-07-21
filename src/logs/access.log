@@ -9,3 +9,4 @@
 ::1 - - [21/Jul/2019:14:26:00 +0000] "DELETE /products/f1e89ef0-abc2-11e9-b077-e3bb1a4cd1af HTTP/1.1" 204 - "-" "PostmanRuntime/7.6.0"
 ::1 - - [21/Jul/2019:14:26:09 +0000] "GET /products HTTP/1.1" 200 549 "-" "PostmanRuntime/7.6.0"
 ::1 - - [21/Jul/2019:14:28:23 +0000] "GET /products/15a4d130-aae0-11e9-bccc-474d277300b2 HTTP/1.1" 500 1400 "-" "PostmanRuntime/7.6.0"
+::1 - - [21/Jul/2019:19:13:05 +0000] "GET /products HTTP/1.1" 200 4317 "-" "PostmanRuntime/7.6.0"
