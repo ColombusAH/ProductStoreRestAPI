@@ -55,12 +55,12 @@ export async function findProductById(
 
 export async function updateProduct(
   id: string,
-  Updateproduct: Product
+  updatedProduct: Product
 ): Promise<Product | undefined> {
   const index = products.findIndex(p => p.id.localeCompare(id) === 0);
   if (index !== -1) {
-    products[index] = Updateproduct;
-    return Promise.resolve(Updateproduct);
+    products[index] = updatedProduct;
+    return Promise.resolve(updatedProduct);
   } else {
     return Promise.resolve(undefined);
   }
