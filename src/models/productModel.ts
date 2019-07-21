@@ -1,7 +1,4 @@
-
-
 //*********/ Builded only for simulate work with DB //*********/
-
 
 export interface Product {
   id: string;
