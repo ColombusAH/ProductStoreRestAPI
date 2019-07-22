@@ -6,6 +6,7 @@ import {
   updateProduct,
   removeProduct
 } from "../models/productModel";
+import { getCategories } from "../models/categoriesModel";
 import { OK, CREATED, NOT_FOUND, NO_CONTENT } from "http-status-codes";
 import { Request, Response, NextFunction } from "express";
 
@@ -20,6 +21,16 @@ async function findAll(req: Request, res: Response, next: NextFunction) {
 
 async function create(req: Request, res: Response, next: NextFunction) {
   try {
+    console.log(req.body.categoryId);
+    const categories = await getCategories();
+    const category = categories.find(
+      c => c.id.localeCompare(req.body.categoryId) == 0
+    );
+    if (!category) {
+      return res
+        .status(NOT_FOUND)
+        .send("Category not exist for the given product");
+    }
     const addedProduct = await addProduct(req.body);
     res.status(CREATED).send(addedProduct);
   } catch (error) {
