@@ -1,14 +1,13 @@
 import { Product } from "../models";
 import {
   getProducts,
-  addProducts,
+  addProduct,
   findProductById,
   updateProduct,
   removeProduct
 } from "../models/productModel";
 import { OK, CREATED, NOT_FOUND, NO_CONTENT } from "http-status-codes";
 import { Request, Response, NextFunction } from "express";
-import uuidv1 from "uuid/v1";
 
 async function findAll(req: Request, res: Response, next: NextFunction) {
   try {
@@ -21,9 +20,7 @@ async function findAll(req: Request, res: Response, next: NextFunction) {
 
 async function create(req: Request, res: Response, next: NextFunction) {
   try {
-    const newProduct: Product = res.locals.newProduct;
-    newProduct.id = uuidv1();
-    const addedProduct = await addProducts(newProduct);
+    const addedProduct = await addProduct(req.body);
     res.status(CREATED).send(addedProduct);
   } catch (error) {
     next(error);
@@ -75,4 +72,4 @@ const productController = {
   update,
   remove
 };
-export { productController };
+export default productController;

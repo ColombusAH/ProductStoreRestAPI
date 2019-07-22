@@ -1,5 +1,6 @@
 //*********/ Builded only for simulate work with DB //*********/
 import products from "../data/products.json";
+import uuidv1 from "uuid/v1";
 export interface Product {
   id: string;
   categoryId: string;
@@ -10,7 +11,18 @@ export async function getProducts(): Promise<Product[]> {
   return Promise.resolve(products);
 }
 
-export async function addProducts(newProduct: Product): Promise<Product> {
+export async function getProductsByCategoryId(
+  categoryId: string
+): Promise<Product[]> {
+  const categoriesSelectedProducts = products.filter(
+    p => p.categoryId.localeCompare(categoryId) === 0
+  );
+  return Promise.resolve(categoriesSelectedProducts);
+}
+
+export async function addProduct(newProduct: Product): Promise<Product> {
+  newProduct.id = uuidv1();
+  console.log(newProduct);
   products.push(newProduct);
   return Promise.resolve(newProduct);
 }
@@ -18,10 +30,8 @@ export async function addProducts(newProduct: Product): Promise<Product> {
 export async function findProductById(
   id: string
 ): Promise<Product | undefined> {
-  console.log(products);
   const index = products.findIndex(p => p.id.localeCompare(id) === 0);
   const product = products[index];
-  console.log(index);
   return Promise.resolve(product);
 }
 
@@ -47,3 +57,5 @@ export async function removeProduct(id: string): Promise<boolean> {
     return Promise.resolve(false);
   }
 }
+
+export { products };

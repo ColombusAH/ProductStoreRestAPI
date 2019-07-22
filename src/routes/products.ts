@@ -3,7 +3,7 @@ import {
   validateNameLength,
   validateIdLength
 } from "../middlewares/validatesMiddlewares";
-import { productController } from "../controllers/productsController";
+import productController from "../controllers/productsController";
 
 const router = Router();
 

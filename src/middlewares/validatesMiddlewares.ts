@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { Product } from "../models";
 import { BAD_REQUEST, CONFLICT } from "http-status-codes";
 
 export function validateNameLength(
@@ -7,13 +6,10 @@ export function validateNameLength(
   res: Response,
   next: NextFunction
 ) {
-  const newProduct: Product = req.body;
-  if (!newProduct || !newProduct.name || newProduct.name.length < 3) {
-    return res
-      .status(CONFLICT)
-      .send(`The name length need to be 3 at least`);
+  const name: string = req.body.name;
+  if (!name || name.length < 3) {
+    return res.status(CONFLICT).send(`The name length need to be 3 at least`);
   }
-  res.locals.newProduct = newProduct;
   next();
 }
 
