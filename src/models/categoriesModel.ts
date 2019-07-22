@@ -1,3 +1,5 @@
+//*********/ Builded only for simulate work with DB //*********/
+
 import categories from "../data/categories.json";
 import uuidv1 from "uuid/v1";
 export interface Category {

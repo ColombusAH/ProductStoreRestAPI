@@ -4,7 +4,7 @@ import path from "path";
 import morgan from "morgan";
 import routes from "./routes";
 
-const app = express();
+const app: express.Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("port", 3000);

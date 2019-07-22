@@ -1,5 +1,4 @@
 import {
-  Category,
   getCategories,
   findCategoryById,
   addCategory,

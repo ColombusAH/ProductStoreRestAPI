@@ -1,6 +1,7 @@
 //*********/ Builded only for simulate work with DB //*********/
 import products from "../data/products.json";
 import uuidv1 from "uuid/v1";
+
 export interface Product {
   id: string;
   categoryId: string;
@@ -22,7 +23,6 @@ export async function getProductsByCategoryId(
 
 export async function addProduct(newProduct: Product): Promise<Product> {
   newProduct.id = uuidv1();
-  console.log(newProduct);
   products.push(newProduct);
   return Promise.resolve(newProduct);
 }
