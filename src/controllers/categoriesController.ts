@@ -1,17 +1,11 @@
-import {
-  getCategories,
-  findCategoryById,
-  addCategory,
-  updateCategory,
-  removeCategory
-} from "../models/categoriesModel";
+import categeorieService from "../models/categoriesModel";
 import { OK, CREATED, NOT_FOUND, NO_CONTENT } from "http-status-codes";
 import { Request, Response, NextFunction } from "express";
-import { getProductsByCategoryId } from "../models/productModel";
+import productService from "../models/productModel";
 
 async function findAll(req: Request, res: Response, next: NextFunction) {
   try {
-    const categories = await getCategories();
+    const categories = await categeorieService.getCategories();
     res.status(OK).send(categories);
   } catch (error) {
     next(error);
@@ -24,7 +18,9 @@ async function getProductsById(
   next: NextFunction
 ) {
   try {
-    const products = await getProductsByCategoryId(req.params.id);
+    const products = await productService.getProductsByCategoryId(
+      req.params.id
+    );
     if (products.length !== 0) {
       return res.status(OK).send(products);
     } else {
@@ -37,7 +33,7 @@ async function getProductsById(
 
 async function findById(req: Request, res: Response, next: NextFunction) {
   try {
-    const category = await findCategoryById(req.params.id);
+    const category = await categeorieService.findCategoryById(req.params.id);
     if (category !== undefined) {
       return res.status(OK).send(category);
     }
@@ -49,7 +45,7 @@ async function findById(req: Request, res: Response, next: NextFunction) {
 
 async function create(req: Request, res: Response, next: NextFunction) {
   try {
-    const newCategory = await addCategory(req.body);
+    const newCategory = await categeorieService.addCategory(req.body);
     res.status(CREATED).send(newCategory);
   } catch (error) {
     next(error);
@@ -58,7 +54,10 @@ async function create(req: Request, res: Response, next: NextFunction) {
 
 async function update(req: Request, res: Response, next: NextFunction) {
   try {
-    const updatedCategory = await updateCategory(req.params.id, req.body);
+    const updatedCategory = await categeorieService.updateCategory(
+      req.params.id,
+      req.body
+    );
     if (updatedCategory) return res.status(OK).send(updatedCategory);
     else return res.status(NOT_FOUND).send("no such Category");
   } catch (error) {
@@ -68,7 +67,7 @@ async function update(req: Request, res: Response, next: NextFunction) {
 
 async function remove(req: Request, res: Response, next: NextFunction) {
   try {
-    const removed = await removeCategory(req.params.id);
+    const removed = await categeorieService.removeCategory(req.params.id);
     if (removed == true) {
       res.status(NO_CONTENT).send("Category removed");
     } else {

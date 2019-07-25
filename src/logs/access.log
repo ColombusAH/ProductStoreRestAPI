@@ -78,3 +78,7 @@
 ::1 - - [22/Jul/2019:19:59:34 +0000] "PUT /categories/15a4f842-aae0-11e9-bccc-474d277300b3 HTTP/1.1" 404 16 "-" "PostmanRuntime/7.6.0"
 ::1 - - [22/Jul/2019:19:59:35 +0000] "PUT /categories/15a4f842-aae0-11e9-bccc-474d277300b3 HTTP/1.1" 404 16 "-" "PostmanRuntime/7.6.0"
 ::1 - - [22/Jul/2019:19:59:41 +0000] "PUT /categories/15a4f842-aae0-11e9-bccc-474d277300b2 HTTP/1.1" 200 65 "-" "PostmanRuntime/7.6.0"
+::1 - - [22/Jul/2019:20:06:26 +0000] "GET /categories HTTP/1.1" 200 143 "-" "PostmanRuntime/7.6.0"
+::1 - - [25/Jul/2019:14:42:25 +0000] "GET /categories HTTP/1.1" 200 143 "-" "PostmanRuntime/7.6.0"
+::1 - - [25/Jul/2019:14:52:36 +0000] "GET /categories HTTP/1.1" 200 143 "-" "PostmanRuntime/7.6.0"
+::1 - - [25/Jul/2019:14:52:41 +0000] "GET /products HTTP/1.1" 200 4317 "-" "PostmanRuntime/7.6.0"
