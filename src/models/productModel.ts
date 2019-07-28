@@ -1,6 +1,6 @@
 //*********/ Builded only for simulate work with DB //*********/
-import products from "../data/products.json";
-import uuidv1 from "uuid/v1";
+import products from '../data/products.json';
+import uuidv1 from 'uuid/v1';
 
 export interface Product {
   id: string;

@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { BAD_REQUEST, CONFLICT } from "http-status-codes";
+import { Request, Response, NextFunction } from 'express';
+import { BAD_REQUEST, CONFLICT } from 'http-status-codes';
 
 export function validateNameLength(
   req: Request,
@@ -20,7 +20,7 @@ export function validateIdLength(
 ) {
   const id = req.params.id;
   if (id === undefined || id === null || id.length !== 36) {
-    return res.status(BAD_REQUEST).send("id must be 36 length");
+    return res.status(BAD_REQUEST).send('id must be 36 length');
   }
   next();
 }

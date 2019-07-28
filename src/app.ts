@@ -1,21 +1,21 @@
-import express from "express";
-import fs from "fs";
-import path from "path";
-import morgan from "morgan";
-import routes from "./routes";
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import morgan from 'morgan';
+import routes from './routes';
 
 const app: express.Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set("port", 3000);
+app.set('port', 3000);
 
 //set the log file.
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "./logs/access.log"),
-  { flags: "a" }
+  path.join(__dirname, './logs/access.log'),
+  { flags: 'a' }
 );
 //register morgan to be my logger.
-app.use(morgan("combined", { stream: accessLogStream }));
+app.use(morgan('combined', { stream: accessLogStream }));
 
 //register routes
 app.use(routes);
